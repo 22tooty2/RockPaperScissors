@@ -1,0 +1,15 @@
+.ButtonPage {
+    
+    background-color: black;
+
+    display: flex;
+    
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.btn {
+    background-color: aqua;
+    color: blueviolet;
+}

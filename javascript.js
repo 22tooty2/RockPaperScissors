@@ -36,6 +36,8 @@ function playRound() {
             break;
         default:
             window.alert("NOT DETECTED, COMPUTER WINS THIS ROUND.");
+            UserChoice = 0;
+            ComputerChoice = 1;
     }
 
     alert("You Chose " + Choice);
@@ -47,8 +49,7 @@ function playRound() {
         computerChoiceString = "Paper";
     else
         computerChoiceString = "Scissors";
-
-
+    
     alert("The Computer Chose " + computerChoiceString);
 
     if (UserChoice == ComputerChoice)
@@ -56,17 +57,8 @@ function playRound() {
         alert("TIE!");
         return;
     }
-    if (UserChoice > ComputerChoice && ComputerChoice != 0)
-    {
-        UserScore++;
-        alert("You Won The Round!");
-    }
-    else if (ComputerChoice > UserChoice && UserChoice != 0)
-    {
-        ComputerScore++;
-        alert("The Computer Won The Round!");
-    }
-    else if (UserChoice == 0)
+    
+    if (CheckRoundWinner(UserChoice, ComputerChoice) == 0)
     {
         UserScore++;
         alert("You Won The Round!");
@@ -78,6 +70,36 @@ function playRound() {
     }
 }
 
+function CheckRoundWinner(Player, Computer)
+{
+    x = ((1 << 2) | Player);
+    // alert("You got (Binary) " + x);
+
+    y = ((0 << 2) | Computer);
+    // alert("Computer got (Binary) " + y);
+
+    z = x - y;
+    alert("z = " + z);
+
+    if (((x - y) % 3) != 0)
+    {
+        return 0; //Player Win
+    }
+    return 1; //Computer Win
+}
+function toDecimal(v) {
+    let binary = '';
+    if(typeof v == 'string') {
+      binary = v.split();
+    } else {
+        binary = v.toString().split();
+    }
+    let decimal = 0;
+    for(let i = 0; i < binary.length; i++) {
+        decimal = (decimal * 2) + binary[i];
+    }
+    return decimal;
+  }
 function CheckWinner() {
     if (UserScore >= 3 || ComputerScore >= 3)
     {
@@ -120,4 +142,6 @@ function Main() {
     window.alert("Bye Bye!");
 }
 
-Main();
+function PaperFunction() {
+    alert("YAY! YOU DID IT!");
+  }
